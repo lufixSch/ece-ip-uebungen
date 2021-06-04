@@ -1,0 +1,91 @@
+<h1 id="energieverbrauch-eines-raspberry-pis-reduzieren">Energieverbrauch eines Raspberry Pi’s reduzieren</h1>
+
+<h2 id="allgemein">Allgemein</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Maßname</th>
+      <th>Reduzierter Strom</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HDMI deaktivieren</td>
+      <td>$25mA$</td>
+    </tr>
+    <tr>
+      <td>USB deaktivieren</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>LEDs deaktivieren</td>
+      <td>$5mA$ pro LED</td>
+    </tr>
+    <tr>
+      <td>Zubehör reduzieren</td>
+      <td>$&gt;50mA$</td>
+    </tr>
+    <tr>
+      <td>Software reduzieren</td>
+      <td>$&gt;100mA$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="hdmi-deaktivieren">HDMI deaktivieren</h2>
+
+<p>Läuft der Raspberry Pi im headless Betrieb kann der HDMI Ausgang mit folgendem Befehl deaktiviert werden:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/tvservice <span class="nt">-o</span>
+</code></pre></div></div>
+
+<p>Mit der option <code class="language-plaintext highlighter-rouge">-p</code> kann der Port auch wieder aktiviert werden.</p>
+
+<p>Um den HDMI Port beim starten des Raspberry Pi’s zu deaktivieren, muss der Befehl in die Datei <code class="language-plaintext highlighter-rouge">/etc/rc.local</code> geschrieben werden</p>
+
+<h2 id="usb-deaktivieren">USB deaktivieren</h2>
+
+<h2 id="leds-deaktivieren">LEDs deaktivieren</h2>
+
+<p>Um die verschiedenen LEDs am Raspberry Pi zu deaktivieren muss die Datei <code class="language-plaintext highlighter-rouge">/boot/config.txt</code> editiert werden. Die Befehle unterscheiden sich jedoch je nach Version.</p>
+
+<h3 id="raspberry-pi-2">Raspberry Pi 2</h3>
+
+<p>Der Raspberry Pi 2 hat zwei LEDs: Die rote Power LED und die Grüne Act LED. Mit folgenden Befehlen können die LEDs deaktiviert werden:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Disable the ACT LED.</span>
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">act_led_trigger</span><span class="o">=</span>none
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">act_led_activelow</span><span class="o">=</span>off
+
+<span class="c"># Disable the PWR LED.</span>
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">pwr_led_trigger</span><span class="o">=</span>none
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">pwr_led_activelow</span><span class="o">=</span>off
+</code></pre></div></div>
+
+<h3 id="raspberry-pi-3">Raspberry Pi 3</h3>
+
+<h3 id="raspberry-pi-4">Raspberry Pi 4</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Disable</span>
+<span class="c">#led1 =&gt; Power led red</span>
+<span class="c">#led0 =&gt; Stauts led green</span>
+<span class="nv">$ </span><span class="nb">echo </span>none | <span class="nb">sudo tee</span> /sys/class/leds/led0/trigger
+<span class="nv">$ </span><span class="nb">echo </span>gpio | <span class="nb">sudo tee</span> /sys/class/leds/led1/trigger
+
+<span class="c">#Enable</span>
+<span class="c">#led1 =&gt; Power led red</span>
+<span class="c">#led0 =&gt; Stauts led green</span>
+<span class="nv">$ </span><span class="nb">echo </span>mmc0 | <span class="nb">sudo tee</span> /sys/class/leds/led0/trigger
+<span class="nv">$ </span><span class="nb">echo </span>input | <span class="nb">sudo tee</span> /sys/class/leds/led1/trigger
+
+</code></pre></div></div>
+
+<h3 id="raspberry-pi-zero-w">Raspberry Pi Zero W</h3>
+
+<p>Der Raspberry Pi Zero besitzt nur eine LED, welche wie folgt deaktiviert werden kann:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Disable the ACT LED on the Pi Zero.</span>
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">act_led_trigger</span><span class="o">=</span>none
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">act_led_activelow</span><span class="o">=</span>on
+</code></pre></div></div>

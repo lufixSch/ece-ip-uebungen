@@ -1,0 +1,130 @@
+<h1 id="raspberry-pi-boot-from-ssd">Raspberry Pi boot from SSD</h1>
+
+<h2 id="möglichkeit-1">Möglichkeit 1</h2>
+
+<p>Guide von <a href="https://forum-raspberrypi.de/forum/thread/48950-tutorial-eine-unendliche-geschichte-raspberry-4b-und-usb-boot/">hier</a></p>
+
+<h3 id="vorbereitung">Vorbereitung</h3>
+
+<p>Zuerst benötigt man Buster auf eine SD-Karte.</p>
+
+<p>Ein Image davon auf die SD-Karte flashen und ohne SSD erstmal booten.
+Ein kleines bißchen einrichten (Sprache und Tastatur) und dann erstmal ein:
+sudo apt update &amp;&amp; sudo apt full-upgrade
+Warscheinlich ist dann erstmal ein reboot fällig.</p>
+
+<h3 id="updaten-übers-betriebssystem">Updaten übers Betriebssystem</h3>
+
+<p>Dann überprüft ihr ob der Bootloader aktuell ist:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>rpi-eeprom-update
+BCM2711 detected
+Dedicated VL805 EEPROM detected
+BOOTLOADER: up-to-date
+CURRENT: Do 16. Apr 17:11:26 UTC 2020 <span class="o">(</span>1587057086<span class="o">)</span>
+LATEST: Do 16. Apr 17:11:26 UTC 2020 <span class="o">(</span>1587057086<span class="o">)</span>
+FW DIR: /lib/firmware/raspberrypi/bootloader/critical
+VL805: up-to-date
+CURRENT: 000137ad
+LATEST: 000137ad
+</code></pre></div></div>
+
+<p>Dieser ist es nicht, er sollte auf “<strong>stable</strong>” (hier “<strong>critical</strong>”) stehen, also müsst ihr ihn aktualisieren.</p>
+
+<p>Dazu muss der Eintrag in einer Datei geändert werden:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/default/rpi-eeprom-update
+</code></pre></div></div>
+
+<p>Dort ändert ihr die Zeile von: <code class="language-plaintext highlighter-rouge">FIRMWARE_RELEASE_STATUS="critical"</code> in <code class="language-plaintext highlighter-rouge">FIRMWARE_RELEASE_STATUS="stable"</code></p>
+
+<p>Der Bootloader wird aktualisiert, wenn ihr folgenden Befehl ausführt:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>rpi-eeprom-update <span class="nt">-d</span> <span class="nt">-f</span> /lib/firmware/raspberrypi/bootloader/stable/pieeprom-2020-07-31.bin
+</code></pre></div></div>
+
+<p>oder</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>rpi-eeprom-update <span class="nt">-a</span>
+</code></pre></div></div>
+
+<p><em>Anmerkung</em>: Der Name des Bootloaders <code class="language-plaintext highlighter-rouge">pieeprom-2020-07-31.bin</code> könnte sich nach diversen Upgrades geändert haben.</p>
+
+<p>Jetzt wäre ein weiteres reboot angebracht und danach solltet ihr das Ergebnis überprüfen:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>rpi-eeprom-update
+BCM2711 detected
+Dedicated VL805 EEPROM detected
+BOOTLOADER: up-to-date
+CURRENT: Fr 31. Jul 13:43:39 UTC 2020 <span class="o">(</span>1596203019<span class="o">)</span>
+LATEST: Fr 31. Jul 13:43:39 UTC 2020 <span class="o">(</span>1596203019<span class="o">)</span>
+FW DIR: /lib/firmware/raspberrypi/bootloader/stable
+VL805: up-to-date
+CURRENT: 000138a1
+LATEST: 000138a1
+</code></pre></div></div>
+
+<p>Wie man sieht, ist jetzt der Bootloader “<strong>up-to-date</strong>” und steht auf “<strong>stable</strong>”.</p>
+
+<p>Jetzt kommt noch ein Check ob die Bootkonfiguration richtig ist:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vcgencmd bootloader_config
+<span class="o">[</span>all]
+<span class="nv">BOOT_UART</span><span class="o">=</span>0
+<span class="nv">WAKE_ON_GPIO</span><span class="o">=</span>1
+<span class="nv">POWER_OFF_ON_HALT</span><span class="o">=</span>0
+<span class="nv">DHCP_TIMEOUT</span><span class="o">=</span>45000
+<span class="nv">DHCP_REQ_TIMEOUT</span><span class="o">=</span>4000
+<span class="nv">TFTP_FILE_TIMEOUT</span><span class="o">=</span>30000
+<span class="nv">ENABLE_SELF_UPDATE</span><span class="o">=</span>1
+<span class="nv">DISABLE_HDMI</span><span class="o">=</span>0
+<span class="nv">BOOT_ORDER</span><span class="o">=</span>0xf41
+</code></pre></div></div>
+
+<p>Die Boot-Order findet man <a href="https://www.raspberrypi.org/do…2711_bootloader_config.md">hier</a></p>
+
+<p>Ab jetzt ist der Raspberry für den USB-Boot vorbereitet.</p>
+
+<p>Nun kommt der nächste Schritt:
+Flasht dasselbe Image auf die SSD, entfernt die SD-Karte und versucht von SSD zu booten.
+Sollte das klappen, müßt ihr Buster neu einrichten.</p>
+
+<p><em>Wichtig</em>: Den Eintrag: <code class="language-plaintext highlighter-rouge">/etc/default/rpi-eeprom-update auf</code> “<strong>stable</strong>” auf der SSD überprüfen.</p>
+
+<h3 id="von-der-sd-karte-auf-die-ssd">Von der SD-Karte auf die SSD</h3>
+
+<p>Man nehme einfach den SD Card Copier des Betriebssystems.</p>
+
+<ol>
+  <li><em>Von Gerät kopieren</em>: Hier die SD-Karte auswählen</li>
+  <li><em>Auf Gerät kopieren</em>: Hier die SSD auswählen</li>
+  <li>New Partition UUID ankreuzen</li>
+</ol>
+
+<p>Und dann auf Start klicken.</p>
+
+<p>Das wars, das Programm kopiert die SD-Karte auf die SSD, passt nebenbei die <code class="language-plaintext highlighter-rouge">/boot/cmdline</code> und die <code class="language-plaintext highlighter-rouge">/etc/fstab</code>
+auf die neue PARTUUID an und resized die root-Partition.</p>
+
+<p>Das klappte sogar aus dem laufenden Betriebssystem (Buster64, light mit Mate-Desktop) heraus.
+Und bootete sofort von SSD. Ich würde sagen, DAU-Geeignet, einfacher geht es kaum.
+Eine weitere Beschreibung findet sich hier: <a href="https://forum-raspberrypi.de/forum/thread/48413-raspberry-pi4-4gb-ssd-boot/?postID=446208#post446208">RE: Raspberry Pi4 4GB SSD Boot</a></p>
+
+<h3 id="das-geheimnis-der-leeren-sd-karte">Das Geheimnis der leeren SD-Karte</h3>
+
+<p><img src="https://forum-raspberrypi.de/attachment/28007-raspi31-raspi-cpu-day-png/" alt="Performance Graph" /></p>
+
+<p>Einfach die kleinste MicroSD-Karte mit (Gparted) fat32 formatieren und in den Kartenslot stecken. Wirkt sogar beim RPi3B(+)</p>
+
+<h2 id="möglichkeit-2-ungetestet">Möglichkeit 2 (Ungetestet)</h2>
+
+<p>Guide von <a href="https://forum-raspberrypi.de/forum/thread/48950-tutorial-eine-unendliche-geschichte-raspberry-4b-und-usb-boot/?postID=446954#post446954">hier</a></p>
+
+<h3 id="backgrouninformationen">Backgrouninformationen</h3>
+
+<p>Ab Juni gab es ein Beta-USB-rpi-boot-eeprom-recovery und mittlerweile seit Ende Juli ein stable <a href="https://github.com/raspberrypi/rpi-eeprom/releases/tag/v2020.07.31-138a1">rpi-boot-eeprom-recovery für USB Boot</a>.</p>
+
+<h3 id="umsetzung">Umsetzung</h3>
+
+<p>Dieses wird auf eine Fat32 formatierte mSD entpackt, in den Raspi 4 damit und Spannungsversorgung einschalten.
+Blinkt die grüne LED dann gleichmäßig schnell hintereinander ist das recovery beendet und man kann ganz ohne Umweg über eine mSD Karte gleich auf die Festplatte/ SSD / USB oder was auch immer sein BS Flashen, anstecken und es bootet.</p>

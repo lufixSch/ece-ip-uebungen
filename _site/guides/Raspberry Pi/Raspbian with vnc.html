@@ -1,0 +1,73 @@
+<h1 id="raspberry-vnc-setup">Raspberry VNC Setup</h1>
+
+<h2 id="raspberry-aufsetzen">Raspberry aufsetzen</h2>
+
+<ol>
+  <li>Raspbian mit grafischer Oberfläche installieren</li>
+  <li>SSH einrichten</li>
+  <li><a href="https://www.raspberrypi.org/documentation/remote-access/vnc/">VNC einrichten</a></li>
+  <li>Automatisch in GUI booten deaktivieren</li>
+</ol>
+
+<h2 id="vnc-configurieren">VNC configurieren</h2>
+
+<ol>
+  <li>Verbinden über ssh</li>
+  <li>VNC config öffnen mit</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span>nano .vnc/config
+</code></pre></div></div>
+
+<ol>
+  <li>Folgenden Text hinzufügen und speichern</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-randr</span> 800x600,1024x768,1280x800,1280x960,1280x1024,1680x1050,1920x1080,3360x1050,1024x700,1200x740,1600x1000,3200x1000
+</code></pre></div></div>
+
+<ol>
+  <li>VNC Server starten mit folgendem befehl</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span>vncserver
+...
+New desktop is raspberry:1 <span class="o">(</span>192.168.178.61:1<span class="o">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Auflösung anpassen (Display bezeichnung ist <code class="language-plaintext highlighter-rouge">:1</code>)</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span>xrandr <span class="nt">-display</span> &lt;display&gt; <span class="nt">-s</span> &lt;auflösung&gt;
+</code></pre></div></div>
+
+<ol>
+  <li>Mit VNC verbinden über den <a href="https://www.realvnc.com/de/connect/download/viewer/">RealVNC Viewer</a></li>
+</ol>
+
+<h2 id="gui-ändern">GUI ändern</h2>
+
+<ol>
+  <li>tasksel installieren</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>tasksel
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p><a href="https://linoxide.com/linux-how-to/how-install-gui-ubuntu-server-guide/">GUI installieren und starten</a></p>
+  </li>
+  <li>
+    <p>VNC display neu starten</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span>vncserver &lt;display&gt; <span class="nt">-kill</span>
+~ <span class="nv">$ </span>vncserver
+</code></pre></div></div>
+
+<h3 id="gui-ändern-alternative">GUI ändern alternative</h3>
+
+<p>Siehe <a href="https://forum-raspberrypi.de/forum/thread/48950-tutorial-eine-unendliche-geschichte-raspberry-4b-und-usb-boot/?postID=453256#post453256">hier</a></p>

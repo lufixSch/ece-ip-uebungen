@@ -1,0 +1,32 @@
+<h1 id="speicherort-von-docker-images-ändern">Speicherort von Docker Images ändern</h1>
+
+<p>Guide von <a href="https://evodify.com/change-docker-storage-location/">hier</a></p>
+
+<h2 id="config-bearbeiten">Config bearbeiten</h2>
+
+<p>Erstelle die Datei <code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code> und füge folgenden Inhalt ein:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"data-root"</span><span class="p">:</span><span class="w"> </span><span class="s2">"path/to/new/location"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Falls die Datei einen Element <code class="language-plaintext highlighter-rouge">"data-root"</code> beinhaltet kann der pfad dort überschrieben werden.</p>
+
+<h2 id="änderungen-anwenden">Änderungen anwenden</h2>
+
+<p>Zuerst muss Docker neu gestartet werden</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart docker
+</code></pre></div></div>
+
+<p>Als nächstes müssen alte Container von dem alten zum neuen Speicherort bewegt werde.
+Dazu werden alle Container gelöscht:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker system prune <span class="nt">-a</span>
+</code></pre></div></div>
+
+<p>Und wieder heruntergeladen werden:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull &lt;container-name&gt;
+</code></pre></div></div>

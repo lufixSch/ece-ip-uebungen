@@ -1,0 +1,26 @@
+{"0": {
+    "doc": "Guides",
+    "title": "Guides",
+    "content": "# Guides Guides for different technical problems ### Latex - [Basics](Latex/Basics.md) - [Distro](Latex/Distro.md) - [Editor](Latex/Editor.md) ### Raspberry Pi - [Boot from SSD](Raspberry%20Pi/Raspberry%20boot%20from%20SSD.md) - [VNC with Raspbian Lite](Raspberry%20Pi/Raspbian%20with%20vnc.md) - [GitLab in Docker](Raspberry%20Pi/GitLab%20in%20Docker%20on%20Pi.md) - [Reduce Powerconsumption](Raspberry%20Pi/Reduce%20Powerconsumption.md) ### Linux - [Change Docker storage location](Linux/Docker%20storage%20location.md) ### Microcontroller - [Flash Sonoff device](Microcontroller/Flash%20Sonoff%20Device.md) ",
+    "url": "/guides/",
+    "relUrl": "/guides/"
+  },"1": {
+    "doc": "About",
+    "title": "About",
+    "content": "This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/) You can find the source code for Minima at GitHub: [jekyll][jekyll-organization] / [minima](https://github.com/jekyll/minima) You can find the source code for Jekyll at GitHub: [jekyll][jekyll-organization] / [jekyll](https://github.com/jekyll/jekyll) [jekyll-organization]: https://github.com/jekyll ",
+    "url": "/about/",
+    "relUrl": "/about/"
+  },"2": {
+    "doc": "Templates",
+    "title": "Hallo",
+    "content": " ",
+    "url": "/templates/",
+    "relUrl": "/templates/"
+  },"3": {
+    "doc": "Templates",
+    "title": "Templates",
+    "content": "List of templates ",
+    "url": "/templates/",
+    "relUrl": "/templates/"
+  }
+}

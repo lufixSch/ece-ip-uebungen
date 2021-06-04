@@ -1,0 +1,19 @@
+<h1 id="flash-sonoff-device">Flash Sonoff Device</h1>
+
+<h2 id="schaltung">Schaltung</h2>
+
+<ul>
+  <li>3,3V -&gt; 3,3V</li>
+  <li>GND -&gt; GND</li>
+  <li>RX -&gt; TX</li>
+  <li>TX -&gt; RX</li>
+</ul>
+
+<p>Widerstand von TX des Sonoff-Geräts zu 3,3V.</p>
+
+<h2 id="flashen">Flashen</h2>
+
+<p>Flashen mit <code class="language-plaintext highlighter-rouge">esptool.py</code> mit folgendem Befehl:</p>
+
+<div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>esptool.py <span class="nt">--port</span> &lt;port&gt; <span class="nt">--baud</span> 115200 write_flash 0x0000 &lt;firmware&gt;.bin
+</code></pre></div></div>
