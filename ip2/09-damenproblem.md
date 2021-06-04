@@ -56,7 +56,9 @@ Das Programm soll zumindest aus folgenden Funktionen bestehen:
 
 Dieses Diagramm veranschaulicht die Rechenzeit zum finden EINER Lösung mit unserem Algorithmus mit dem intuitiven Algorithmus (orange) und der optimierten Datenstruktur (blau). Auf der Abszisse ist die Brettgröße aufgetragen.
 
-Mögliche Ausgabe:
+[Vorlagen](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/09-damenproblem/vorlage)
+
+## Mögliche Ausgabe:
 
 ```bash
 ...

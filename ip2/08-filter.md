@@ -28,7 +28,7 @@ Nach Einlesen der Daten soll der Benutzer aufgefordert werden, eine Filterbreite
 
 Analysieren Sie die Auswirkung verschiedener Filterbreiten, in dem Sie die gefilterten Daten in Excel visualisieren. Dokumentieren Sie ihre Erkenntnisse und begründen Sie.
 
-[zu filternde Rohdaten]({{base_url}}/404)
+[zu filternde Rohdaten](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/08-filter)
 
 ## Detailanforderungen
 
