@@ -38,7 +38,7 @@ Wer möchte, kann sich über den unten verlinkten code dynamisch ein array mit Z
 
 Das dynamisch erzeugte Array heißt `number_array` und ist vom Typ `unsigned long`
 
-[Arraygenerator mit Zufallszahlen](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/15-sortieralgorithmen/basis)
+[Arraygenerator mit Zufallszahlen](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/15-sortieralgorithmen/vorlage)
 
 ## Erweiterung - zusätzlicher Sortieralgorithmus
 

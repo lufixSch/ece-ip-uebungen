@@ -24,7 +24,7 @@ nav_order: 4
 - Die Funktionen push, pop müssen eine Fehlerbehandlung für die Fälle (a) leerer Stapel und (b) voller Stapel haben
 - Ausgabe einer Fehlermeldung, sollte der Ausdruck nicht gültig sein
 
-[Postfix Basis](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/12-upn-auswertung/vorlage)
+[Postfix Basis](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/11-upn-auswertung/vorlage)
 
 ### Optionale Umsetzung
 
