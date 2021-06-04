@@ -3,8 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: lufix
-toc: true
-has_children: true
 ---
 
 # ECE IP Übungen
