@@ -46,4 +46,4 @@ theme: just-the-docs
 #   - vendor/gems/
 #   - vendor/ruby/
 
-color_scheme: lufix-light
+color_scheme: light
