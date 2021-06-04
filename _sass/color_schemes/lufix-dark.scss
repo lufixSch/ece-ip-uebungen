@@ -1,17 +1,25 @@
-$body-background-color: $grey-dk-300;
+$body-background-color: rgb(26, 26, 26);
 $sidebar-color: $grey-dk-300;
 $border-color: $grey-dk-200;
 
 $body-text-color: $grey-lt-300;
 $body-heading-color: $grey-lt-000;
-$nav-child-link-color: $grey-dk-000;
+$nav-child-link-color: hsl(204, 2%, 70%);
 $search-result-preview-color: $grey-dk-000;
 
-$link-color: $blue-000;
-$btn-primary-color: $blue-200;
+$link-color: #00afcb;
+$btn-primary-color: #d4002d;
 $base-button-color: $grey-dk-250;
 
 $code-background-color: $grey-dk-250;
 $search-background-color: $grey-dk-250;
 $table-background-color: $grey-dk-250;
 $feedback-color: darken($sidebar-color, 3%);
+
+#search-input {
+  color: $body-text-color;
+}
+
+.site-title.lh-tight {
+  color: $link-color;
+}

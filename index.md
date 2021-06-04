@@ -3,6 +3,10 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: lufix
+toc: true
+has_children: true
 ---
 
-Hey
+# ECE IP Übungen
+
+Aufgaben und Lösungsbeispiele für IP1 und IP2 and der FH JOANNEUM.
