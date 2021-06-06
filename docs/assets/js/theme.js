@@ -1,10 +1,10 @@
 const set_theme = (is_dark) => {
   if (is_dark) {
     console.log('dark');
-    jtd.setTheme('dark');
+    jtd.setTheme('lufix-dark');
   } else {
     console.log('light');
-    jtd.setTheme('light');
+    jtd.setTheme('lufix-light');
   }
 };
 
