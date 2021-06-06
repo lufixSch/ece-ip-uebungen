@@ -50,4 +50,5 @@ Damit Sie sich zu Beginn auf die Suchalgorithmen konzentrieren können, verwende
 - $$x =$$ gesuchter Index
 
 [Array Generator](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/17-suchalgorithmen/vorlage)
+
 [Datensatz](https://github.com/lufixSch/ece-ip-uebungen/tree/main/ip2/17-suchalgorithmen)
